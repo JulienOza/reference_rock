@@ -3,10 +3,14 @@
 /* ************************************************************************* */
 
 // Import the manager modules responsible for handling data operations on the tables
+const BandMemberManager = require("./models/BandMemberManager");
+const FormSubmitManager = require("./models/FormSubmitManager");
 const ItemManager = require("./models/ItemManager");
 
 const managers = [
   ItemManager,
+  BandMemberManager,
+  FormSubmitManager,
   // Add other managers here
 ];
 

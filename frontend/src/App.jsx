@@ -1,41 +1,61 @@
-import Counter from "./components/Counter";
-import logo from "./assets/logo.svg";
-
+import { useEffect, useState } from "react";
 import "./App.css";
+import ContactForm from "./pages/ContactForm/ContactForm";
 
 function App() {
+  const [bandMembers, setBandMembers] = useState([]);
+
+  useEffect(() => {
+    async function fetchBandMembers() {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/bandmembers`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const data = await response.json();
+        setBandMembers(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchBandMembers();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React !</p>
-
-        <Counter />
-
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {" | "}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <>
+      <nav className="navbar_container">
+        <img
+          className="navbar_logo"
+          src="../src/assets/icons/logo_rr_light.svg"
+          alt=""
+          href="/"
+        />
+        <ul>
+          <li>Lien 1</li>
+          <li>Lien 2</li>
+          <li>Lien 3</li>
+        </ul>
+      </nav>
+      <main className="main_container">
+        {bandMembers.map((bandMember) => (
+          <article className="band_member_card" key={bandMember.id}>
+            <img
+              className="band_member_photo"
+              src={bandMember.pict_url}
+              alt="musicien en concert"
+            />
+            <p>Nom: {bandMember.name}</p>
+            <p>Rôle: {bandMember.role}</p>
+            <p>Bio: {bandMember.bio}</p>
+            <p>Citation: {bandMember.quote}</p>
+          </article>
+        ))}
+      </main>
+      <ContactForm />
+    </>
   );
 }
 
