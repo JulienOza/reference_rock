@@ -1,0 +1,31 @@
+.navbar_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  height: 12vh;
+  background-color: #272727;
+}
+
+.navbar_container ul {
+  margin-right: 2rem;
+  display: flex;
+  list-style-type: none;
+}
+
+.navbar_container li {
+  margin: 1rem;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar_container a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar_logo {
+  height: 10vh;
+  width: auto;
+  margin-left: 2rem;
+}

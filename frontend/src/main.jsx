@@ -4,11 +4,21 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
+import ContactForm from "./pages/ContactForm/ContactForm";
+import BandMembers from "./pages/BandMembers/BandMembers";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/contactform",
+    element: <ContactForm />,
+  },
+  {
+    path: "/lineup",
+    element: <BandMembers />,
   },
 ]);
 

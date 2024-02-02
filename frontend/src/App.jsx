@@ -1,60 +1,40 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/media-has-caption */
+import React, { useState } from "react";
 import "./App.css";
-import ContactForm from "./pages/ContactForm/ContactForm";
+import Navbar from "./components/Navbar/Navbar";
+import oldTvImage from "./assets/photos/old_tv_frame_dark.png";
 
 function App() {
-  const [bandMembers, setBandMembers] = useState([]);
+  const [isMuted, setIsMuted] = useState(true);
 
-  useEffect(() => {
-    async function fetchBandMembers() {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/bandmembers`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
-        setBandMembers(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-
-    fetchBandMembers();
-  }, []);
-
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+  };
   return (
     <>
-      <nav className="navbar_container">
-        <img
-          className="navbar_logo"
-          src="../src/assets/icons/logo_rr_light.svg"
-          alt=""
-          href="/"
-        />
-        <ul>
-          <li>Lien 1</li>
-          <li>Lien 2</li>
-          <li>Lien 3</li>
-        </ul>
-      </nav>
+      <Navbar />
       <main className="main_container">
-        {bandMembers.map((bandMember) => (
-          <article className="band_member_card" key={bandMember.id}>
-            <img
-              className="band_member_photo"
-              src={bandMember.pict_url}
-              alt="musicien en concert"
-            />
-            <p>Nom: {bandMember.name}</p>
-            <p>Rôle: {bandMember.role}</p>
-            <p>Bio: {bandMember.bio}</p>
-            <p>Citation: {bandMember.quote}</p>
-          </article>
-        ))}
+        <button className="sound_toggle" onClick={toggleMute}>
+          {isMuted ? "Mute" : "Sound"}
+        </button>
+        <img
+          className="tv_frame"
+          src={oldTvImage}
+          alt="vieux poste de tv"
+          draggable="false"
+        />
+        <video
+          className="teaser_rr"
+          width="320"
+          height="240"
+          autoPlay
+          loop
+          muted={isMuted}
+        >
+          <source src="../src/assets/videos/teaser_rr.mp4" type="video/mp4" />
+        </video>
       </main>
-      <ContactForm />
     </>
   );
 }

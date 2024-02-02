@@ -1,0 +1,31 @@
+.band_member_card_container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #5b5b5b;
+  background-image: url("../src/assets/photos/darkwood_background.jpg");
+  background-size: repeat;
+}
+
+.band_member_card {
+  width: 50vw;
+  min-width: 15rem;
+  color: #272727;
+  margin: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.band_member_photo {
+  height: 30vw;
+  width: auto;
+}
+
+.band_member_text {
+  background-color: #f7f7f7;
+  padding: 1rem;
+  overflow: auto;
+  height: 22vw;
+}

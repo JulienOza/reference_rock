@@ -1,15 +1,12 @@
 body {
   margin: 0;
   box-sizing: border-box;
-}
-.navbar_logo {
-  height: 7vh;
-  width: auto;
+  font-family: sans-serif;
 }
 
 .main_container {
   width: 100vw;
-  height: 90vh;
+  height: 88vh;
   background-image: url("../src/assets/photos/background_black-stage.webp");
   background-size: cover;
   display: flex;
@@ -18,16 +15,35 @@ body {
   justify-content: space-around;
 }
 
-.navbar_container {
-  width: 100vw;
-  height: 10vh;
-  background-color: #272727;
+.tv_frame {
+  position: absolute;
+  width: 430px;
+  transform: translateX(-2%) translateY(25%);
+  z-index: 2;
 }
 
-.band_member_card {
-  width: 20vw;
-  min-width: 15rem;
-  background-color: antiquewhite;
-  color: black;
-  margin: 2rem;
+.teaser_rr {
+  position: absolute;
+  transform: translateX(-15%) translateY(30%);
+}
+
+.sound_toggle {
+  transform: translateX(300%) translateY(30%);
+  z-index: 3;
+  background-color: #5b5b5b;
+  color: #f7f7f7;
+}
+
+@media screen and (max-width: 800px) {
+  .tv_frame {
+    transform: translateX(-2%) translateY(25%) scale(0.7);
+  }
+
+  .teaser_rr {
+    transform: translateX(-12%) translateY(32%) scale(0.7);
+  }
+
+  .sound_toggle {
+    transform: translateX(220%) translateY(30%) scale(0.8);
+  }
 }
